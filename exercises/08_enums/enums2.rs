@@ -22,7 +22,7 @@ impl Message {
 }
 
 fn main() {
-    let messages = [
+    let messages: [Message; 5] = [
         Message::Resize {
             width: 10,
             height: 30,
