@@ -1,13 +1,10 @@
+
+
 // Calls of this function should be replaced with calls of `string_slice` or `string`.
-fn placeholder() {}
-
-fn string_slice(arg: &str) {
-    println!("{arg}");
+fn placeholder<T>(s: T) -> T {
+    s
 }
 
-fn string(arg: String) {
-    println!("{arg}");
-}
 
 // TODO: Here are a bunch of values - some are `String`, some are `&str`.
 // Your task is to replace `placeholder(…)` with either `string_slice(…)`
@@ -21,7 +18,7 @@ fn main() {
 
     placeholder("rust is fun!".to_owned());
 
-    placeholder("nice weather".into());
+    placeholder::<String>("nice weather".into());
 
     placeholder(format!("Interpolation {}", "Station"));
 
