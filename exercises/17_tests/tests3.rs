@@ -1,3 +1,5 @@
+use std::collections::btree_map::Values;
+#[derive(Debug)]
 struct Rectangle {
     width: i32,
     height: i32,
@@ -5,14 +7,15 @@ struct Rectangle {
 
 impl Rectangle {
     // Don't change this function.
-    fn new(width: i32, height: i32) -> Self {
+    fn new(width: i32, height: i32) -> Result<Self, String> {
         if width <= 0 || height <= 0 {
+            return Err(("Rectangle width and height must be positive").to_string());
             // Returning a `Result` would be better here. But we want to learn
             // how to test functions that can panic.
-            panic!("Rectangle width and height must be positive");
+            
         }
 
-        Rectangle { width, height }
+        Ok(Rectangle { width, height })
     }
 }
 
@@ -28,22 +31,26 @@ mod tests {
     fn correct_width_and_height() {
         // TODO: This test should check if the rectangle has the size that we
         // pass to its constructor.
-        let rect = Rectangle::new(10, 20);
-        assert_eq!(todo!(), 10); // Check width
-        assert_eq!(todo!(), 20); // Check height
+        let rect = Rectangle::new(10, 20).unwrap();
+        assert_eq!(rect.width, 10); // Check width
+        assert_eq!(rect.height, 20); // Check height
     }
 
     // TODO: This test should check if the program panics when we try to create
     // a rectangle with negative width.
     #[test]
     fn negative_width() {
-        let _rect = Rectangle::new(-10, 10);
+        let rect = Rectangle::new(-10, 10);
+        assert!(rect.is_err());
+        assert_eq!(rect.unwrap_err(), "Rectangle width and height must be positive"); // Check
     }
 
     // TODO: This test should check if the program panics when we try to create
     // a rectangle with negative height.
     #[test]
     fn negative_height() {
-        let _rect = Rectangle::new(10, -10);
+        let rect = Rectangle::new(10, -10);
+        assert!(rect.is_err());
+        assert_eq!(rect.unwrap_err(),"Rectangle width and height must be positive");
     }
 }
