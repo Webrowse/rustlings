@@ -1,6 +1,6 @@
 DON'T EDIT THIS FILE!
 
-as_ref_mut
+vecs1
 
 intro1
 intro2
@@ -25,7 +25,6 @@ primitive_types3
 primitive_types4
 primitive_types5
 primitive_types6
-vecs1
 vecs2
 move_semantics1
 move_semantics2
